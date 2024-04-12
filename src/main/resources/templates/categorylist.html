@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>List of categories</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/css/bootstrap.min.css"
+      th:href="@{/css/bootstrap.min.css}"
+    />
+  </head>
+  <body>
+    <h1>List of categories</h1>
+    <ul>
+      <li th:each="category : ${categories}">
+        <span th:text="${category.name}"></span>
+        <button
+          sec:authorize="hasAuthority('ADMIN')"
+          type="button"
+          th:onclick="|window.location.href='/editcategory/${category.categoryId}'|"
+        >
+          Edit
+        </button>
+      </li>
+    </ul>
+    <p sec:authorize="hasAuthority('ADMIN')">
+      <button
+        type="button"
+        class="btn btn-success"
+        th:onclick="window.location.href='/addcategory'"
+      >
+        New category
+      </button>
+    </p>
+  </body>
+</html>

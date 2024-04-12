@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Recipes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/css/bootstrap.min.css"
+      th:href="@{/css/bootstrap.min.css}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-between align-items-center" style="margin-top: 16px">
+        <h1 class="col-auto">List of recipes</h1>
+        <form class="col-auto" th:action="@{/logout}" method="post">
+          <input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+        </form>
+      </div>
+      <form class="mb-3 mx-auto" action="#" method="GET" th:action="@{/search}" style="width: 50%;">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search by name, category or ingredient"
+                   name="query"/>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+      <div th:if="${param.query}" class="mb-3">
+        <p>Searching recipes for "<span th:text="${param.query}"></span>"</p>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          th:onclick="window.location.href='/recipelist'"
+        >
+          Undo
+        </button>
+      </div>
+      <div class="row">
+        <div th:each="recipe : ${recipes}" class="col-md-4 d-flex">
+            <div class="card recipe-card" style="margin-top: 16px; min-width: 400px">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title" th:text="${recipe.name}"></h5>
+                    <p class="card-text" th:text="${recipe.description}"></p>
+                    <div class="mt-auto" style="display: flex; flex-direction: column; align-items: flex-start;">
+                        <p class="card-text"><small class="text-muted" th:text="${recipe.creator}"></small></p>
+                        <p class="card-text" th:text="${recipe.category != null ? recipe.category.name : ''}"></p>
+                        <button class="btn btn-primary" type="button"
+                                th:onclick="|window.location.href='/recipelist/${recipe.id}'|">Open
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>    
+      <button
+        type="button"
+        class="btn btn-primary"
+        th:onclick="window.location.href='/addrecipe'"
+        style="width: fit-content; margin-top: 24px"
+      >
+        Add Recipe
+      </button>
+  </body>
+</html>

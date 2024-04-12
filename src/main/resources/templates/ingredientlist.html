@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>List of ingredients</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/css/bootstrap.min.css"
+      th:href="@{/css/bootstrap.min.css}"
+    />
+  </head>
+  <body>
+    <h1>List of ingredients</h1>
+    <ul>
+      <li
+        th:each="ingredient : ${ingredients}"
+        th:text="${ingredient.name}"
+      ></li>
+    </ul>
+    <p sec:authorize="hasAuthority('ADMIN')">
+      <button
+        type="button"
+        class="btn btn-success"
+        th:onclick="window.location.href='/addingredient'"
+      >
+        New ingredient
+      </button>
+    </p>
+  </body>
+</html>

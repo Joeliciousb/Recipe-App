@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Add ingredient</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body style="padding: 8px">
+    <h1>Add an ingredient</h1>
+    <form
+      method="post"
+      th:action="@{/saveingredient}"
+      th:object="${ingredient}"
+    >
+      <p>Name <input type="text" th:field="${ingredient.name}" /></p>
+      <input type="submit" value="Submit" />
+      <input type="reset" value="Reset" />
+    </form>
+  </body>
+</html>
