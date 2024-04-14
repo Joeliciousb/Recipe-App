@@ -1,15 +1,24 @@
 package com.joel.recipe_app.recipe_app.domain;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class RecipeForm {
     private Long id;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String creator;
+    @NotEmpty
     private String description;
+    @NotEmpty
     private String ingredients;
+    @NotEmpty
     private String amountOfIngredients;
 
+    @NotEmpty
     private String category;
 
+    @NotEmpty
     private String instructions;
 
     public String getInstructions() {

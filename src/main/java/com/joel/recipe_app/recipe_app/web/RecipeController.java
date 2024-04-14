@@ -60,7 +60,7 @@ public class RecipeController {
             model.addAttribute("instructions", recipe.getInstructions().split("\n"));
             return "recipepage";
         } else
-            return "redirect:/recipelist"; // TODO: Korjaa tämä
+            return "redirect:/recipelist";
     }
 
     @GetMapping("/search")
@@ -92,7 +92,13 @@ public class RecipeController {
     }
 
     @PostMapping("/saverecipe")
-    public String postSaveRecipe(@Valid @ModelAttribute RecipeForm recipeForm) {
+    public String postSaveRecipe(@Valid @ModelAttribute RecipeForm recipeForm, BindingResult bindingResult,
+            Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("recipe", new Recipe());
+            model.addAttribute("categories", categoryRepository.findAll());
+            return "addrecipeform";
+        }
         Recipe newRecipe = new Recipe();
         newRecipe.setName(recipeForm.getName());
         newRecipe.setDescription(recipeForm.getDescription());
@@ -138,13 +144,18 @@ public class RecipeController {
             model.addAttribute("categories", categoryRepository.findAll());
             return "editrecipeform";
         } else {
-            throw new Error("Recipe not found"); // TODO: KORJAAA
+            throw new Error("Recipe not found");
         }
     }
 
     @PostMapping("/saverecipeedit")
-    public String postSaveRecipeEdit(@Valid @ModelAttribute RecipeForm recipeForm, BindingResult bindingResult) {
+    public String postSaveRecipeEdit(@Valid @ModelAttribute RecipeForm recipeForm, BindingResult bindingResult,
+            Model model) {
         if (bindingResult.hasErrors()) {
+            Long id = recipeForm.getId();
+            Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+            model.addAttribute("recipe", recipeOptional.get());
+            model.addAttribute("categories", categoryRepository.findAll());
             return "editrecipeform";
         }
         Long recipeFormId = recipeForm.getId();

@@ -64,6 +64,13 @@ public class RecipeAppApplication {
 			Ingredient ingredient7 = new Ingredient("Valkosipulinkynsi");
 			Ingredient ingredient8 = new Ingredient("Maito");
 			Ingredient ingredient9 = new Ingredient("Voi");
+			Ingredient ingredient10 = new Ingredient("Avokado");
+			Ingredient ingredient11 = new Ingredient("Broilerin rintafilee");
+			Ingredient ingredient12 = new Ingredient("Punasipuli");
+			Ingredient ingredient13 = new Ingredient("Tomaatti");
+			Ingredient ingredient14 = new Ingredient("Fetajuusto");
+			Ingredient ingredient15 = new Ingredient("Oliiviöljy");
+			Ingredient ingredient16 = new Ingredient("Sitruunamehu");
 
 			ingredientRepository.save(ingredient1);
 			ingredientRepository.save(ingredient2);
@@ -74,6 +81,13 @@ public class RecipeAppApplication {
 			ingredientRepository.save(ingredient7);
 			ingredientRepository.save(ingredient8);
 			ingredientRepository.save(ingredient9);
+			ingredientRepository.save(ingredient10);
+			ingredientRepository.save(ingredient11);
+			ingredientRepository.save(ingredient12);
+			ingredientRepository.save(ingredient13);
+			ingredientRepository.save(ingredient14);
+			ingredientRepository.save(ingredient15);
+			ingredientRepository.save(ingredient16);
 
 			Recipe recipe1 = new Recipe("Kinkkupiirakka", "Joel",
 					"Maistuva ja helppo suolainen piirakka. Tämä resepti on kulkeutunut suvussani jo vuosikymmeniä.",
@@ -82,6 +96,11 @@ public class RecipeAppApplication {
 			Recipe recipe2 = new Recipe("Paistettu muna", "Mikko", "Keksin tän ite mut muksut ainakin tykkäs",
 					"1. Ihan peruskauraa eli pistä pannu keskikuumaksi \n2. Kun pannu on sopivan lämmin niin voi sinne sulamaan. \n3. Sit rikot sinne pari munaa ja maustat suolalla ja pippurilla. \n4. Anna paistua noin 2 min per puoli",
 					category2);
+
+			Recipe recipe3 = new Recipe("Broileri-avokadosalaatti", "Keittiömestari",
+					"Herkullinen salaatti broilerista ja avokadosta.",
+					"1. Grillaa broilerin rintafileet kypsiksi ja leikkaa ne suikaleiksi.\n2. Kuutioi avokadot, punasipuli ja tomaatit. Murustele feta-juusto.\n3. Sekoita kulhossa oliiviöljy, sitruunamehu, suola ja mustapippuri.\n4. Yhdistä kaikki ainekset isossa kulhossa ja sekoita varovasti kastikkeen kanssa.\n5. Tarjoile raikkaana alkuruokana tai pääruokana.",
+					category4);
 
 			RecipeIngredient recipeIngredient1 = new RecipeIngredient("100g");
 			recipeIngredient1.setRecipe(recipe1);
@@ -111,6 +130,34 @@ public class RecipeAppApplication {
 			recipeIngredient7.setRecipe(recipe2);
 			recipeIngredient7.setIngredient(ingredient4);
 
+			RecipeIngredient recipeIngredient17 = new RecipeIngredient("2 kpl");
+			recipeIngredient17.setRecipe(recipe3);
+			recipeIngredient17.setIngredient(ingredient10);
+
+			RecipeIngredient recipeIngredient18 = new RecipeIngredient("2 kpl");
+			recipeIngredient18.setRecipe(recipe3);
+			recipeIngredient18.setIngredient(ingredient11);
+
+			RecipeIngredient recipeIngredient19 = new RecipeIngredient("1 kpl");
+			recipeIngredient19.setRecipe(recipe3);
+			recipeIngredient19.setIngredient(ingredient12);
+
+			RecipeIngredient recipeIngredient20 = new RecipeIngredient("2 kpl");
+			recipeIngredient20.setRecipe(recipe3);
+			recipeIngredient20.setIngredient(ingredient13);
+
+			RecipeIngredient recipeIngredient21 = new RecipeIngredient("100 g");
+			recipeIngredient21.setRecipe(recipe3);
+			recipeIngredient21.setIngredient(ingredient14);
+
+			RecipeIngredient recipeIngredient22 = new RecipeIngredient("1 dl");
+			recipeIngredient22.setRecipe(recipe3);
+			recipeIngredient22.setIngredient(ingredient15);
+
+			RecipeIngredient recipeIngredient23 = new RecipeIngredient("2 rkl");
+			recipeIngredient23.setRecipe(recipe3);
+			recipeIngredient23.setIngredient(ingredient16);
+
 			List<RecipeIngredient> listOfIngredients1 = new ArrayList<>();
 			listOfIngredients1.add(recipeIngredient1);
 			listOfIngredients1.add(recipeIngredient2);
@@ -122,11 +169,22 @@ public class RecipeAppApplication {
 			listOfIngredients2.add(recipeIngredient6);
 			listOfIngredients2.add(recipeIngredient7);
 
+			List<RecipeIngredient> listOfIngredients3 = new ArrayList<>();
+			listOfIngredients3.add(recipeIngredient17);
+			listOfIngredients3.add(recipeIngredient18);
+			listOfIngredients3.add(recipeIngredient19);
+			listOfIngredients3.add(recipeIngredient20);
+			listOfIngredients3.add(recipeIngredient21);
+			listOfIngredients3.add(recipeIngredient22);
+			listOfIngredients3.add(recipeIngredient23);
+
 			recipe1.setIngredients(listOfIngredients1);
 			recipe2.setIngredients(listOfIngredients2);
+			recipe3.setIngredients(listOfIngredients3);
 
 			recipeRepository.save(recipe1);
 			recipeRepository.save(recipe2);
+			recipeRepository.save(recipe3);
 
 			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
 			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");

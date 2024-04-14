@@ -30,16 +30,6 @@
           />
         </div>
         <div class="form-group">
-          <label for="creator">Creator:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="creator"
-            th:field="${recipe.creator}"
-            required
-          />
-        </div>
-        <div class="form-group">
           <label for="description">Description:</label>
           <input
             type="text"
@@ -93,6 +83,11 @@
           ></textarea>
         </div>
         <input type="hidden" name="id" th:value="${recipe.id}" />
+        <input
+          type="hidden"
+          name="creator"
+          th:value="${#authentication.name}"
+        />
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="reset" class="btn btn-secondary">Reset</button>
       </form>
